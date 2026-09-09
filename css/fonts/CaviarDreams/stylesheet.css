@@ -4,6 +4,7 @@
 
 @font-face {
     font-family: 'caviar_dreams';
+    font-display: swap;
     src: url('caviar_dreams_bold-webfont.woff2') format('woff2'),
          url('caviar_dreams_bold-webfont.woff') format('woff');
     font-weight: bold;
@@ -16,6 +17,7 @@
 
 @font-face {
     font-family: 'caviar_dreams';
+    font-display: swap;
     src: url('caviardreams-webfont.woff2') format('woff2'),
          url('caviardreams-webfont.woff') format('woff');
     font-weight: normal;
@@ -28,6 +30,7 @@
 
 @font-face {
     font-family: 'caviar_dreams';
+    font-display: swap;
     src: url('caviardreams_bolditalic-webfont.woff2') format('woff2'),
          url('caviardreams_bolditalic-webfont.woff') format('woff');
     font-weight: bold;
@@ -40,6 +43,7 @@
 
 @font-face {
     font-family: 'caviar_dreams';
+    font-display: swap;
     src: url('caviardreams_italic-webfont.woff2') format('woff2'),
          url('caviardreams_italic-webfont.woff') format('woff');
     font-weight: normal;
