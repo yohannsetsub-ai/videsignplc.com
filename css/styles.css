@@ -483,9 +483,17 @@ main {
   text-decoration: none;
 }
 .grid-work-item img {
+  --card-cut: 25%;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  clip-path: polygon(
+    var(--card-cut) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 calc(var(--card-cut) * 1.3333333333)
+  );
   transition:
     filter 0.25s,
     transform 0.25s;
