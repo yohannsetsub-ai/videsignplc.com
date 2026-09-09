@@ -36,14 +36,16 @@ Find `<div class="grid-work">` and add your card alongside the existing cards:
 
 ```html
 <a class="grid-work-item" href="#work-16" data-category="Office">
-  <img
-    src="images/gallery/large/new-project/01.webp"
-    alt=""
-    width="1600"
-    height="1000"
-    loading="lazy"
-    decoding="async"
-  >
+  <span class="project-image">
+    <img
+      src="images/gallery/large/new-project/01.webp"
+      alt=""
+      width="1600"
+      height="1000"
+      loading="lazy"
+      decoding="async"
+    />
+  </span>
   <span class="project-category">Office</span>
   <h2 class="work-title">My new office project</h2>
 </a>
@@ -72,15 +74,15 @@ You can mix plain paths and expanded photo entries in one project's `images` lis
 
 ## Other edits
 
-| File | What you can change |
-| --- | --- |
-| `index.html` | Services, team, contact details, social links and portfolio cards |
-| `script/data.js` | Project titles, descriptions and photographs |
-| `css/styles.css` | Colors, fonts, spacing and mobile layout |
-| `script/script.js` | Navigation, filters, animations and the contact form |
-| `script/gallery.js` | Image viewer, keyboard controls and optional smaller images |
-| `CNAME` | Your website domain; keep this file |
-| `robots.txt`, `sitemap.xml` | Search crawler information |
+| File                        | What you can change                                               |
+| --------------------------- | ----------------------------------------------------------------- |
+| `index.html`                | Services, team, contact details, social links and portfolio cards |
+| `script/data.js`            | Project titles, descriptions and photographs                      |
+| `css/styles.css`            | Colors, fonts, spacing and mobile layout                          |
+| `script/script.js`          | Navigation, filters, animations and the contact form              |
+| `script/gallery.js`         | Image viewer, keyboard controls and optional smaller images       |
+| `CNAME`                     | Your website domain; keep this file                               |
+| `robots.txt`, `sitemap.xml` | Search crawler information                                        |
 
 You do not need to edit the last two JavaScript files when adding projects. The contact form opens a draft email addressed to `info@videsignsplc.com`.
 

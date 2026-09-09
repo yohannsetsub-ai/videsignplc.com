@@ -482,6 +482,10 @@ main {
   min-width: 0;
   text-decoration: none;
 }
+.project-image {
+  display: block;
+  filter: drop-shadow(0 5px 9px rgb(34 35 33 / 16%));
+}
 .grid-work-item img {
   --card-cut: 25%;
   width: 100%;
