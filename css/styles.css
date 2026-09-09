@@ -545,7 +545,7 @@ main {
 }
 #gallery-image {
   width: 100%;
-  height: clamp(15rem, 52vw, 40rem);
+  height: min(clamp(15rem, 52vw, 40rem), 60dvh);
   object-fit: contain;
 }
 .expand-icon {
@@ -662,13 +662,22 @@ body.viewer-open {
   overflow: hidden;
 }
 #image-viewer {
-  width: 96vw;
-  max-width: 100rem;
-  max-height: 96dvh;
-  padding: 1.25rem;
-  border: 1px solid #ffffffb3;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0.75rem;
+  border: 0;
   color: var(--ink);
   background: #ffffff59;
+}
+#image-viewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.5rem;
 }
 #image-viewer::backdrop {
   background: #ffffff94;
@@ -710,16 +719,16 @@ body.viewer-open {
 }
 .viewer-stage {
   position: relative;
-  margin-top: 1rem;
+  min-height: 0;
 }
 #viewer-image {
   width: 100%;
-  height: min(72dvh, calc(96dvh - 10rem));
+  height: 100%;
   object-fit: contain;
 }
 #viewer-status {
   text-align: center;
-  margin: 0.5rem 0 0;
+  margin: 0;
   font-size: 0.875rem;
 }
 #image-viewer :focus-visible {
@@ -1074,10 +1083,7 @@ form .button {
     display: none;
   }
   #image-viewer {
-    padding: 0.75rem;
-  }
-  #viewer-image {
-    height: min(65dvh, calc(96dvh - 9rem));
+    padding: 0.5rem;
   }
 }
 @media (max-width: 480px) {
