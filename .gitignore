@@ -1,10 +1,20 @@
-# Generated website output.
-/dist/
+# Track only the website and the rules in this file.
+/*
+!/.gitignore
+!/README.md
+!/index.html
+!/CNAME
+!/robots.txt
+!/sitemap.xml
+!/css/
+!/images/
+!/script/
 
-# Local working files and packages.
-/.tmp/
-/node_modules/
+# The browser needs JavaScript modules, not local build/optimization tools.
+/script/*
+!/script/*.js
 
-# Unused website assets; keep the standalone logo export versioned.
-/WEBTEMP/archive/
+# Ignore incidental local files even inside website folders.
 __pycache__/
+.DS_Store
+Thumbs.db
