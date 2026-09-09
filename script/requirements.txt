@@ -1,0 +1,2 @@
+# Development only; visitors do not download Python or Pillow.
+Pillow>=11.3,<13

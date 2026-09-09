@@ -1,3 +1,10 @@
-dist/
-.tmp/
-node_modules/
+# Generated website output.
+/dist/
+
+# Local working files and packages.
+/.tmp/
+/node_modules/
+
+# Unused website assets; keep the standalone logo export versioned.
+/WEBTEMP/archive/
+__pycache__/
