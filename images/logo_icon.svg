@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">VI Designs</title>
+  <g fill="#f68b1f">
+    <path d="M12 49H74L40 111Z"/>
+    <path d="M101 49H166L88 201L54 140Z"/>
+    <path d="M180 49H241V201H180Z"/>
+  </g>
+</svg>

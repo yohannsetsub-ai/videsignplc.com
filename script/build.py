@@ -14,7 +14,7 @@ shutil.copy2(root / 'index.html', output / 'index.html')
 shutil.copytree(root / 'css', output / 'css')
 # Ship referenced images only; unused originals need not slow down deployment.
 references = (root / 'index.html').read_text(encoding='utf-8') + (root / 'script/data.js').read_text(encoding='utf-8')
-images = set(re.findall(r'(images/[^"\n]+\.(?:webp|png|jpg))', references))
+images = set(re.findall(r'(images/[^"\n]+\.(?:webp|png|jpg|svg))', references))
 for name in sorted(images):
     source = root / name
     if not source.is_file():

@@ -44,6 +44,23 @@ reducedMotion.addEventListener('change', () => {
 document.documentElement.classList.add('js');
 $('.work-tools').hidden = false;
 
+// Keep the cut on the upper V's tip, using the same centered cover scaling
+// as the logo mask. Its SVG tip is (17, 32) in a 126 × 77 viewBox.
+const heroFrame = $('.about-image');
+if ('ResizeObserver' in window) {
+    const heroCutObserver = new ResizeObserver(([entry]) => {
+        const { width, height } = entry.contentRect;
+        if (!width || !height) return;
+        const scale = Math.max(width / 126, height / 77);
+        const tipX = (width - 126 * scale) / 2 + 17 * scale;
+        const tipY = (height - 77 * scale) / 2 + 32 * scale;
+        const triangleSlope = 28.5 / 16;
+        const cutWidth = Math.max(0, tipX + tipY / triangleSlope);
+        heroFrame.style.setProperty('--corner-cut', `${cutWidth.toFixed(3)}px`);
+    });
+    heroCutObserver.observe(heroFrame);
+}
+
 function setMenu(open, restoreFocus = false) {
     navigation.classList.toggle('show', open);
     menuButton.setAttribute('aria-expanded', String(open));
