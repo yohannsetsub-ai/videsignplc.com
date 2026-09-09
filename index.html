@@ -322,44 +322,71 @@
     </main>
 
     <footer id="contact" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" tabindex="-1">Let’s create your space.</h2>
-        <div class="contact-info">
-            <p><a href="tel:+251910327831">+251 910 32 7831</a></p>
-
-            <br>
-            <p><a href="mailto:info@videsignsplc.com">info@videsignsplc.com</a></p>
-            <br>
-            <p>Mobile Plaza, Near Dembel, 3rd Floor #D4-B</p>
-            <p>Addis Abeba, Ethiopia</p>
+        <div class="footer-heading">
+            <h2 id="contact-heading" tabindex="-1">Let’s create your space.</h2>
         </div>
-        <div class="contact-form">
-            <form id="contact-form" action="mailto:info@videsignsplc.com" method="post" enctype="text/plain" aria-describedby="contact-note">
-                <div class="form-field"><label for="first-name">First name <span>(required)</span></label><input id="first-name" type="text" name="first_name" autocomplete="given-name" required maxlength="80"></div>
-                <div class="form-field"><label for="last-name">Last name</label><input id="last-name" type="text" name="last_name" autocomplete="family-name" maxlength="80"></div>
-                <div class="form-field full-width"><label for="email">Email <span>(required)</span></label><input id="email" type="email" name="email" required autocomplete="email" maxlength="254"></div>
-                <div class="form-field full-width"><label for="message">Tell us about your project <span>(required)</span></label><textarea id="message" name="message" rows="5" required maxlength="3000" placeholder="Your space, ideas and what you have in mind…"></textarea></div><p id="contact-note" class="full-width form-note">This opens a draft in your email app. You can also contact us directly by phone or WhatsApp.</p><p id="contact-status" class="full-width form-note" role="status"></p>
-                <button class="button" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
-                <svg class="icon-filters" xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false">
-                    <defs>
-                        <filter id="logo-orange" color-interpolation-filters="sRGB">
-                            <feFlood class="social-icon-color"/>
-                            <feComposite in2="SourceAlpha" operator="in"/>
-                        </filter>
-                    </defs>
-                </svg>
-                <div class="social-icons">
-
-                    <a href="https://www.facebook.com/share/1C4w6avSHM/" target="_blank" rel="noopener noreferrer"><img src="images/home/fb.svg" alt="Facebook" width="24" height="24" loading="lazy"></a>
-
-                    <a href="https://www.instagram.com/videsigns.plc/" target="_blank" rel="noopener noreferrer"><img src="images/home/instagram.svg" alt="Instagram" width="24" height="24" loading="lazy"></a>
-                    <a href="https://www.tiktok.com/@videsigns.plc?_r=1&amp;_t=ZS-99ageCbXauV" target="_blank" rel="noopener noreferrer"><img src="images/home/tiktok.svg" alt="TikTok" width="24" height="24" loading="lazy"></a>
-                    <a href="https://wa.me/251910327831?text=Hello%20VI%20Designs,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
-                       class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-                            <img src="images/home/wa.svg" alt="WhatsApp" width="24" height="24" loading="lazy">
-                    </a>
-                </div>
-            </form>
+        <div class="footer-layout">
+            <div class="contact-info">
+                <dl class="contact-details">
+                    <div>
+                        <dt>Email us</dt>
+                        <dd><a href="mailto:info@videsignsplc.com">info@videsignsplc.com</a></dd>
+                    </div>
+                    <div>
+                        <dt>Call us</dt>
+                        <dd><a href="tel:+251910327831">+251 910 32 7831</a></dd>
+                    </div>
+                    <div>
+                        <dt>Our studio</dt>
+                        <dd><address>Mobile Plaza, Near Dembel<br>3rd Floor #D4-B<br>Addis Ababa, Ethiopia</address></dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form" action="mailto:info@videsignsplc.com" method="post" enctype="text/plain" aria-label="Project enquiry" aria-describedby="contact-note">
+                    <div class="form-field">
+                        <label for="first-name">First name <span>(required)</span></label>
+                        <input id="first-name" type="text" name="first_name" autocomplete="given-name" required maxlength="80">
+                    </div>
+                    <div class="form-field">
+                        <label for="last-name">Last name</label>
+                        <input id="last-name" type="text" name="last_name" autocomplete="family-name" maxlength="80">
+                    </div>
+                    <div class="form-field full-width">
+                        <label for="email">Email <span>(required)</span></label>
+                        <input id="email" type="email" name="email" required autocomplete="email" maxlength="254">
+                    </div>
+                    <div class="form-field full-width">
+                        <label for="message">Your project <span>(required)</span></label>
+                        <textarea id="message" name="message" rows="4" required maxlength="3000" placeholder="Your space, ideas and what you have in mind…"></textarea>
+                    </div>
+                    <p id="contact-note" class="full-width form-note">This opens a draft in your email app.</p>
+                    <p id="contact-status" class="full-width form-note" role="status"></p>
+                    <button class="button" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
+                </form>
+            </div>
         </div>
+        <div class="footer-bottom">
+            <a class="footer-brand" href="#home" aria-label="VI Designs — back to studio">
+                <img src="images/logo.svg" alt="" width="126" height="77" loading="lazy">
+                <span>VI Designs</span>
+            </a>
+            <div class="social-icons" role="group" aria-label="Follow VI Designs">
+                <a href="https://www.facebook.com/share/1C4w6avSHM/" target="_blank" rel="noopener noreferrer"><img src="images/home/fb.svg" alt="Facebook" width="32" height="32" loading="lazy"></a>
+                <a href="https://www.instagram.com/videsigns.plc/" target="_blank" rel="noopener noreferrer"><img src="images/home/instagram.svg" alt="Instagram" width="32" height="32" loading="lazy"></a>
+                <a href="https://www.tiktok.com/@videsigns.plc?_r=1&amp;_t=ZS-99ageCbXauV" target="_blank" rel="noopener noreferrer"><img src="images/home/tiktok.svg" alt="TikTok" width="32" height="32" loading="lazy"></a>
+                <a href="https://wa.me/251910327831?text=Hello%20VI%20Designs,%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="images/home/wa.svg" alt="" width="32" height="32" loading="lazy"></a>
+            </div>
+            <a class="back-to-top" href="#home">Back to studio <span aria-hidden="true">↑</span></a>
+        </div>
+        <svg class="icon-filters" xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false">
+            <defs>
+                <filter id="logo-orange" color-interpolation-filters="sRGB">
+                    <feFlood class="social-icon-color"/>
+                    <feComposite in2="SourceAlpha" operator="in"/>
+                </filter>
+            </defs>
+        </svg>
     </footer>
 
     <dialog id="image-viewer" aria-labelledby="viewer-title">
@@ -367,7 +394,6 @@
         <div class="viewer-stage"><button type="button" class="gallery-arrow gallery-prev" aria-label="Previous image">❮</button><img id="viewer-image" src="images/home/aboutus.webp" alt="" loading="lazy"><button type="button" class="gallery-arrow gallery-next" aria-label="Next image">❯</button></div>
         <p id="viewer-status" role="status" aria-live="polite" aria-atomic="true"></p>
     </dialog>
-    <a class="back-to-top" href="#home">Back to studio ↑</a>
     <script type="module" src="./script/script.js"></script>
 </body>
 
