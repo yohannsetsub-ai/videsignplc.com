@@ -22,7 +22,7 @@ body {
   color: var(--ink);
   background: #fff;
   font:
-    1rem/1.7 'caviar_dreams',
+    1.1rem/1.7 'caviar_dreams',
     Arial,
     sans-serif;
 }
@@ -207,7 +207,7 @@ main {
   margin-bottom: 1.5rem;
 }
 .about-label {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   margin: 2rem 0 0.75rem;
 }
@@ -216,7 +216,7 @@ main {
 }
 .about-image {
   /* Inner V edge in logo.svg: (51, 3.5) to (25.5, 46.5). */
-  --v-cut-slope: 1.6862745098;
+  --v-cut-slope: 0.7002075382;
   --corner-cut: clamp(3rem, 6vw, 6rem);
   --corner-depth: calc(var(--corner-cut) * var(--v-cut-slope));
   position: relative;
@@ -236,7 +236,7 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgb(255 255 255 / 35%);
+  background: rgb(255 255 255 / 13%);
   -webkit-mask: url('../images/logo.svg') center / cover no-repeat;
   mask: url('../images/logo.svg') center / cover no-repeat;
   pointer-events: none;
@@ -861,7 +861,9 @@ form .button {
   justify-self: start;
 }
 .contact-form .button {
-  min-width: 12rem;
+  min-width: 8rem;
+  display: inline-flex;
+  justify-content: center;
 }
 .footer-bottom {
   display: flex;
