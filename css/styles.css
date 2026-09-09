@@ -888,14 +888,15 @@ form .button {
 }
 .back-to-top {
   display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
   align-items: center;
   gap: 0.75rem;
   min-height: 44px;
   font-size: 0.875rem;
   text-decoration: none;
-}
-.back-to-top span {
-  color: var(--orange);
 }
 .back-to-top:hover {
   text-decoration: underline;

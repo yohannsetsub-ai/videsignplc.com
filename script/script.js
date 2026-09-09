@@ -233,5 +233,10 @@ $('#contact-form').addEventListener('submit', (event) => {
   window.location.href = `mailto:info@videsignsplc.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
+$('.back-to-top').addEventListener('click', () => {
+  $('.header-logo a').focus({ preventScroll: true });
+  window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+});
+
 filterProjects();
 renderRoute(false);
