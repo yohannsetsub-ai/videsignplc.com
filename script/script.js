@@ -53,21 +53,13 @@ sections.forEach((section) => {
   section.hidden = section.id !== 'home';
 });
 
-// Keep the cut on the upper V's tip, using the same centered cover scaling
-// as the logo mask. Its SVG tip is (17, 32) in a 126 × 77 viewBox.
+// A 45-degree cut extending across 40% of the hero image's width.
 const heroFrame = $('.about-image');
 if ('ResizeObserver' in window) {
   const heroCutObserver = new ResizeObserver(([entry]) => {
-    const { width, height } = entry.contentRect;
-    if (!width || !height) return;
-    const scale = Math.max(width / 126, height / 77);
-    const tipX = (width - 126 * scale) / 2 + 17 * scale;
-    const tipY = (height - 77 * scale) / 2 + 32 * scale;
-    // Match the inner V's diagonal, while keeping the cut through the upper tip.
-    const vCutSlope =
-      parseFloat(getComputedStyle(heroFrame).getPropertyValue('--v-cut-slope')) || 43 / 25.5;
-    const cutWidth = Math.max(0, tipX + tipY / vCutSlope);
-    heroFrame.style.setProperty('--corner-cut', `${cutWidth.toFixed(3)}px`);
+    const { width } = entry.contentRect;
+    if (!width) return;
+    heroFrame.style.setProperty('--corner-cut', `${(width * 0.4).toFixed(2)}px`);
   });
   heroCutObserver.observe(heroFrame);
 }

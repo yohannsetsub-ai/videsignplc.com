@@ -215,10 +215,9 @@ main {
   color: var(--muted);
 }
 .about-image {
-  /* Inner V edge in logo.svg: (51, 3.5) to (25.5, 46.5). */
-  --v-cut-slope: 0.7002075382;
-  --corner-cut: clamp(3rem, 6vw, 6rem);
-  --corner-depth: calc(var(--corner-cut) * var(--v-cut-slope));
+  /* Equal distances across and down keep the cut at 45 degrees. */
+  --corner-cut: clamp(5rem, 16vw, 16rem);
+  --corner-depth: var(--corner-cut);
   position: relative;
   min-width: 0;
   overflow: hidden;
