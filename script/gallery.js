@@ -1,6 +1,5 @@
 // Project galleries load only after a visitor opens a project.
 import { workDetails } from './data.js';
-import { galleryImage, gallerySources, imageAsset } from './image-paths.js';
 
 const $ = (selector) => document.querySelector(selector);
 const cards = [...document.querySelectorAll('.grid-work-item')];
@@ -12,7 +11,11 @@ let imageIndex = 0;
 
 export function renderProject(hash) {
   const work = workDetails[hash.replace('-', '')];
-  currentWork = work;
+  // A single path is enough for a new photo. Smaller copies are optional.
+  currentWork = {
+    ...work,
+    images: work.images.map((photo) => (typeof photo === 'string' ? { src: photo } : photo)),
+  };
   imageIndex = 0;
   $('#work-title').textContent = work.title;
   $('#work-description').textContent = work.description;
@@ -32,12 +35,12 @@ export function renderProject(hash) {
   }
   const thumbnails = $('#gallery-thumbnails');
   thumbnails.replaceChildren();
-  work.images.forEach((source, index) => {
+  currentWork.images.forEach((photo, index) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.setAttribute('aria-label', `Show image ${index + 1} of ${work.images.length}`);
     const image = document.createElement('img');
-    image.src = galleryImage(source, 'thumbnail');
+    image.src = photo.thumbnail || photo.preview || photo.src;
     image.alt = '';
     image.width = 85;
     image.height = 60;
@@ -61,9 +64,8 @@ function showImage(index, scrollThumbnail = true) {
   const description = `${currentWork.title} — image ${imageIndex + 1} of ${currentWork.images.length}`;
   const image = $('#gallery-image');
   $('#gallery-error').hidden = true;
-  image.srcset = gallerySources(source);
-  image.sizes = '(max-width: 1236px) 88vw, 1088px';
-  image.src = galleryImage(source, 'medium');
+  $('#gallery-mobile-image').srcset = encodeURI(source.small || source.preview || source.src);
+  image.src = source.preview || source.src;
   image.alt = description;
   $('#gallery-status').textContent = `Image ${imageIndex + 1} / ${currentWork.images.length}`;
   if (viewer.open) updateViewer();
@@ -94,7 +96,7 @@ document
 
 // Full-screen viewing retains the original image quality.
 function updateViewer() {
-  $('#viewer-image').src = imageAsset(currentWork.images[imageIndex]);
+  $('#viewer-image').src = currentWork.images[imageIndex].src;
   $('#viewer-image').alt = $('#gallery-image').alt;
   $('#viewer-title').textContent = currentWork.title;
   $('#viewer-status').textContent = $('#gallery-status').textContent;

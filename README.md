@@ -1,89 +1,99 @@
-# VI Designs website
+# VI Designs — editing your website
 
-A static HTML, CSS and JavaScript portfolio. No framework, runtime packages, database, or external font service is required. The existing Caviar Dreams font, logo, layout and interactions are preserved.
+To add a project, upload your photographs and edit **two files**:
 
-## Unused website files
+- **`index.html`**: the project card visitors click.
+- **`script/data.js`**: its title, description and gallery photographs.
 
-`WEBTEMP/` contains only website assets that are not used on the page: `archive/` holds old images, fonts and original card-image backups, and `exports/` holds your standalone logo export. Development tools and working files remain in their existing locations outside `WEBTEMP/`.
+No image aliases, size manifests, image generator or package installation is required.
 
-The active website files stay in `index.html`, `css/`, `images/` and `script/`. The public build excludes `WEBTEMP/` entirely.
+## Add a project
 
-## Build and preview
+### 1. Add your photographs
 
-```sh
-python script/build.py
-python -m http.server 8000 --directory dist
+Create a folder such as `images/gallery/large/new-project/` and put your photographs there. WebP or JPG files are fine. Short filenames without spaces are easiest to manage.
+
+### 2. Add the project in `script/data.js`
+
+Copy an existing project block, give it a new number, and edit the details. For example, add this before the final closing `};`:
+
+```js
+work16: {
+  title: 'My new office project',
+  description: 'A short description of this project.',
+  images: [
+    'images/gallery/large/new-project/01.webp',
+    'images/gallery/large/new-project/02.webp',
+  ],
+},
 ```
 
-Open `http://localhost:8000`. Rebuild after edits. Publish **only `dist/`**, which excludes backups, development tools and tests. Use an HTTP server; opening `index.html` directly does not support ES modules.
+Keep a comma between project blocks. The first image is the main project photo; list the other photos in the order you want them shown.
 
-The build validates every referenced image and font before replacing the previous output. A missing gallery variant means you need to run the image command below.
+### 3. Add its card in `index.html`
 
-## Where to make changes
+Find `<div class="grid-work">` and add your card alongside the existing cards:
 
-| File or folder                       | What it controls                                                                                          |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| `index.html`                         | Page text, team, services, portfolio cards, contact details, social links and SEO metadata                |
-| `css/styles.css`                     | Design, with labeled sections for navigation, studio, team, portfolio, gallery, footer and mobile layouts |
-| `css/fonts/CaviarDreams/`            | The original local regular and bold fonts                                                                 |
-| `script/script.js`                   | Navigation, transitions, search, filters and contact form                                                 |
-| `script/gallery.js`                  | Project images, thumbnails, keyboard/swipe controls and full-screen viewer                                |
-| `script/data.js`                     | Project titles, descriptions, original image paths and virtual-tour links                                 |
-| `script/image-paths.js`              | Paths and responsive image selection                                                                      |
-| `script/optimize_images.py`          | Generates smaller gallery copies from the original photographs                                            |
-| `script/image-sizes.js`              | Generated dimensions; do not edit manually                                                                |
-| `images/gallery/large/`                      | Full-screen originals, retained at their existing quality                                                 |
-| `images/gallery/`                    | Generated thumbnail, small and medium display copies, plus full-size originals in large/                                                       |
-| `script/image-aliases.js`             | Generated map allowing identical image paths to share one physical file |
-| `script/image_assets.py`              | Moves exact duplicate images into WEBTEMP and maintains the shared paths |
-| `WEBTEMP/exports/VI-Designs-Logo.svg`        | Your standalone logo file, separate from the website                                                      |
-| `CNAME`, `robots.txt`, `sitemap.xml` | Public domain and search crawler information                                                              |
-
-For colors, start with `:root` at the top of `styles.css`. The logo orange is `#f68b1f`; SVG icon files also contain this fill color. Keep both in sync if the brand changes. The hero cut calculation is documented beside its `ResizeObserver` in `script.js`.
-
-## Add or change a project
-
-1. Add its full-size WebP photographs under `images/gallery/large/`.
-2. Add or edit its entry in `script/data.js`, keeping image paths inside quotes.
-3. Add or edit the matching card in `index.html`. Its `href="#work-16"` must match a `work16` data entry. Cards also set the project navigation order. Use `Office`, `Residential` or `Hospitality` for `data-category`.
-4. Use the first gallery image as the card cover. Point its `src` at that image's small display copy and its `srcset` at the small and medium copies, using actual widths. If a generated path is listed in `script/image-aliases.js`, use the retained path. There is no separate `works-thumbnail` folder.
-5. Generate the display images, then build:
-
-```sh
-python -m pip install -r script/requirements.txt
-python script/optimize_images.py
-python script/build.py
+```html
+<a class="grid-work-item" href="#work-16" data-category="Office">
+  <img
+    src="images/gallery/large/new-project/01.webp"
+    alt=""
+    width="1600"
+    height="1000"
+    loading="lazy"
+    decoding="async"
+  >
+  <span class="project-category">Office</span>
+  <h2 class="work-title">My new office project</h2>
+</a>
 ```
 
-Pillow is used only for development. Generated images and the dimension file are kept with the source so ordinary builds need only Python. The image script skips unchanged photographs and never crops or upscales them. Small and medium gallery variants are capped at 768 and 1440 pixels; thumbnails at 192 pixels. Full-screen viewing loads the original only when needed.
+Use the actual image width and height. The card's `#work-16` must match `work16` in `data.js`. Use **Office**, **Residential** or **Hospitality** for both the category attribute and label. Card order controls portfolio order and previous/next project navigation.
 
-## Local archive
+Use the project's first photo as its card image. If you copy an existing card, update or remove its old `srcset` as well as changing `src`.
 
-`WEBTEMP/archive/` holds unused images, obsolete font files and original portfolio-card backups. It is ignored by Git and excluded from the public build. Its `manifest.json` records original paths, backup paths, sizes and reasons. Restore a file by copying it back to the original path.
+## Optional smaller photographs
 
-`duplicate-images/` contains byte-identical copies that now share one active file. `portfolio-thumbnails/` contains the former separate portfolio covers; every card now reuses its project's first gallery image. The different display sizes that are still needed remain in `images/gallery/`.
+A plain image path is enough. Existing projects use this expanded form to retain their faster-loading images:
 
-Run `python script/image_assets.py` to consolidate exact duplicates after adding images. The image optimizer also does this automatically. Keep `script/image-aliases.js` with the website: it is used by the gallery and build, and prevents archived paths from becoming broken image requests.
-
-Ignored files stay on this computer; a fresh clone will not contain the archive. Moving previously tracked assets appears as deletions in Git, while their local backups remain safe. Git history is unchanged.
-
-## Checks and formatting
-
-Node is optional and is used only for development checks:
-
-```sh
-npm ci
-npm test
-npm run format:check
-python tests/assets.py
+```js
+{
+  src: 'images/gallery/large/new-project/01.webp',
+  preview: 'images/gallery/medium/new-project/01.webp',
+  small: 'images/gallery/small/new-project/01.webp',
+  thumbnail: 'images/gallery/thumbnail/new-project/01.webp',
+}
 ```
 
-Use `npm run format` for consistent indentation. The JavaScript tests cover real modules in a simulated DOM: lazy loading, slow navigation, retry, all current projects, gallery controls, filters, menu, reduced motion, form constraints and metadata. The Python check verifies image dimensions, backups and public output. These checks do not measure browser rendering or real network speed.
+`src` is the full-screen photograph. The other three paths are optional: `preview` is the regular gallery image, `small` is the mobile image, and `thumbnail` is the tiny gallery preview. Only include paths for files you actually have. Every path is explicit; the website does not guess filenames or require matching folders.
 
-## SEO and contact
+You can mix plain paths and expanded photo entries in one project's `images` list. Photos reused by different projects can point directly to the same file.
 
-The canonical domain follows `CNAME`: `https://www.videsignsplc.com/`. If the domain changes, update the canonical, structured data, sharing URLs, robots file and sitemap together. The site includes a description and LocalBusiness structured data with existing contact details. Sharing metadata uses the existing PNG logo.
+## Other edits
 
-Existing `#work-1` links continue to work. They are sections of one website document, so the sitemap lists the homepage only. Separately indexed project pages would require a future move to real page URLs and static project HTML. Search rankings and live loading scores have not been measured here.
+| File | What you can change |
+| --- | --- |
+| `index.html` | Services, team, contact details, social links and portfolio cards |
+| `script/data.js` | Project titles, descriptions and photographs |
+| `css/styles.css` | Colors, fonts, spacing and mobile layout |
+| `script/script.js` | Navigation, filters, animations and the contact form |
+| `script/gallery.js` | Image viewer, keyboard controls and optional smaller images |
+| `CNAME` | Your website domain; keep this file |
+| `robots.txt`, `sitemap.xml` | Search crawler information |
 
-The contact form prepares an email to `info@videsignsplc.com` in the visitor's email application. It does not send or store messages on a server. Mailbox provisioning and delivery are managed separately by the domain's email provider.
+You do not need to edit the last two JavaScript files when adding projects. The contact form opens a draft email addressed to `info@videsignsplc.com`.
+
+## Preview and publish
+
+Open the project through a local web server, such as your editor's Live Server. If Python is available, run this from the website folder:
+
+```sh
+python -m http.server 8000 --bind 127.0.0.1
+```
+
+Open `http://localhost:8000` and refresh after editing. Do not open the HTML directly with a `file://` address, because browser JavaScript modules need a web server.
+
+The website works directly from its HTML, CSS, JavaScript and images. The optional local command `python script/build.py` creates a clean `dist/` copy for publishing and checks for missing files. That helper is ignored by Git and is not required to add projects or run the site.
+
+`WEBTEMP/` contains unused website assets and old script backups. It is not used by the website. Local development tools and working files remain outside it. Git includes the website, this README and `CNAME`; it ignores local tools and backups.

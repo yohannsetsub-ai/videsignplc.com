@@ -266,6 +266,14 @@
               loading="lazy"
               decoding="async"
             />
+            <img
+              src="images/home/path-ethiopia.webp"
+              alt="Path Ethiopia"
+              width="480"
+              height="240"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <h2>Fostering strong partnerships with our clients</h2>
         </section>
@@ -631,12 +639,19 @@
         >
           <div class="gallery-stage">
             <button type="button" id="expand-image" aria-label="Open image in full-screen viewer">
-              <img
-                id="gallery-image"
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                alt=""
-                decoding="async"
-              /><span class="expand-label">View full screen</span>
+              <picture>
+                <source
+                  id="gallery-mobile-image"
+                  media="(max-width: 760px)"
+                  srcset="
+                    data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+                  " />
+                <img
+                  id="gallery-image"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  alt=""
+                  decoding="async" /></picture
+              ><span class="expand-label">View full screen</span>
             </button>
             <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous image">
               ❮

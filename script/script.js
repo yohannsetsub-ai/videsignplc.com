@@ -154,9 +154,16 @@ async function renderRoute(moveFocus = true) {
     heading.tabIndex = -1;
     heading.focus({ preventScroll: true });
   }
-  if (section === 'contact')
-    $('#contact').scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-  else if (moveFocus) window.scrollTo({ top: 0, behavior: 'instant' });
+  if (section === 'contact') {
+    const contact = $('#contact');
+    const headerHeight = $('header').getBoundingClientRect().height;
+    contact.style.setProperty('--contact-header-height', `${headerHeight}px`);
+    // Measure the actual header instead of adding fixed scroll offsets.
+    window.scrollTo({
+      top: window.scrollY + contact.getBoundingClientRect().top - headerHeight,
+      behavior: reducedMotion.matches ? 'instant' : 'smooth',
+    });
+  } else if (moveFocus) window.scrollTo({ top: 0, behavior: 'instant' });
   if (section !== 'contact') {
     if (pageKey !== lastPage) animatePage(document.getElementById(section));
     lastPage = pageKey;
