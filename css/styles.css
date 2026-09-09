@@ -412,8 +412,8 @@ main {
   text-align: center;
 }
 .portfolio-tagline {
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  line-height: 1.4;
+  font: inherit;
+  color: var(--muted);
   margin-bottom: 1rem;
 }
 .section-heading > p:last-child {
@@ -921,8 +921,8 @@ form .button {
   transform: translateY(-3px);
 }
 .social-icons img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 .back-to-top {
